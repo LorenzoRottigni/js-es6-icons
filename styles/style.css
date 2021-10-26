@@ -1,3 +1,7 @@
+html {
+    --scrollbarBG: transparent;
+    --thumbBG: #dc3545
+}
 header{
     height: 20vh;
 }
@@ -13,13 +17,31 @@ main .container-fluid{
     justify-content: center;
     gap: 0.5rem;
     border: solid #dc3545;
-    overflow: auto;
-
 }
 .icon-container i{
     margin-top: .5rem
+}
+select{
+    overflow: scroll;
+    scrollbar-color: #dc3545;
 }
 select[multiple] option:checked {
     background: #dc3545 linear-gradient(0deg, red 0%, red 100%);
     color:rgb(255, 255, 255) !important;
 }
+
+  select::-webkit-scrollbar {
+    width: 11px;
+  }
+  select {
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  }
+  select::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+  }
+  select::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG) ;
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+  }

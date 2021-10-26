@@ -94,9 +94,109 @@ const icons = [
 		prefix: 'fa-',
 		type: 'user',
 		family: 'fas'
+	},
+    {
+		name: 'accessible-icon',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fab'
+	},
+	{
+		name: 'air-freshener',
+		prefix: 'fa-',
+		type: 'item',
+		family: 'fas'
+	},
+	{
+		name: 'baby-carriage',
+		prefix: 'fa-',
+		type: 'item',
+		family: 'fas'
+	},
+	{
+		name: 'battle-net',
+		prefix: 'fa-',
+		type: 'platform',
+		family: 'fab'
+	},
+	{
+		name: 'bootstrap',
+		prefix: 'fa-',
+		type: 'platform',
+		family: 'fab'
+	},
+	{
+		name: 'broom',
+		prefix: 'fa-',
+		type: 'item',
+		family: 'fas'
+	},
+	{
+		name: 'book-dead',
+		prefix: 'fa-',
+		type: 'item',
+		family: 'fas'
+	},
+	{
+		name: 'gem',
+		prefix: 'fa-',
+		type: 'item',
+		family: 'far'
+	},
+	{
+		name: 'satellite',
+		prefix: 'fa-',
+		type: 'item',
+		family: 'fas'
+	},
+	{
+		name: 'snowflake',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas'
+	},
+	{
+		name: 'poo',
+		prefix: 'fa-',
+		type: 'item',
+		family: 'fas'
+	},
+	{
+		name: 'skiing-nordic',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas'
+	},
+	{
+		name: 'street-view',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fad'
+	},
+	{
+		name: 'user-injured',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas'
+	},
+	{
+		name: 'user-ninja',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas'
+	},
+	{
+		name: 'user-secret',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas'
 	}
-];
+]
 
+//print all icons value
+const PRINT_ALL = 'all'
+
+//container where print
 const iconsContainer = document.querySelector('main .container-fluid')
 
 function generateIconsGrid(iconsArray, outputContainer, filter){
@@ -104,7 +204,7 @@ function generateIconsGrid(iconsArray, outputContainer, filter){
     iconsArray.forEach(element => {
         const newIcon = document.createElement('i')
         const {name, prefix, type, family} = element
-        if(type === filter || filter === 'all'){
+        if(type === filter || filter === PRINT_ALL){
             const newIconDescription = document.createElement('h4');
             const newIconContainer = document.createElement('div')
             newIcon.classList.add(`${family}`, `${prefix}${name}`, `fs-1`)
@@ -122,17 +222,22 @@ function generateIconsGrid(iconsArray, outputContainer, filter){
                 case 'user':
                     newIconContainer.classList.add('text-warning','border-warning')
                     break
+                case 'platform':
+                    newIconContainer.classList.add('text-success','border-success')
+                    break
+                case 'item':
+                    newIconContainer.classList.add('text-primary','border-primary')
+                    break
             }
             outputContainer.appendChild(newIconContainer)
             }
     });
 }
 
-generateIconsGrid(icons, iconsContainer, 'all')
+generateIconsGrid(icons, iconsContainer, PRINT_ALL)
 
 const iconsFilter = document.querySelector('select')
 
 iconsFilter.addEventListener('change', function (){
-    console.log(this.value)
     generateIconsGrid(icons, iconsContainer, this.value)
 })
