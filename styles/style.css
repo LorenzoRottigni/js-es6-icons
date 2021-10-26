@@ -14,7 +14,12 @@ main .container-fluid{
     gap: 0.5rem;
     border: solid #dc3545;
     overflow: auto;
+
 }
 .icon-container i{
     margin-top: .5rem
+}
+select[multiple] option:checked {
+    background: #dc3545 linear-gradient(0deg, red 0%, red 100%);
+    color:rgb(255, 255, 255) !important;
 }
