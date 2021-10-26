@@ -248,13 +248,17 @@ function generateIconsGrid(iconsArray, outputContainer, filter, clearContent){
         }
     })
 }
-
+//generate default grid no filters
 generateIconsGrid(icons, iconsContainer, PRINT_ALL, 1, true)
-//queryselectorall x multiple select
+
+//input select options filter
 const iconsFilter = document.querySelector('select')
 
+//filter listener
 iconsFilter.addEventListener('change', function (){
+    //reset old content
     iconsContainer.textContent = ''
+    //for each selected option generate his items
     for (let i = 0; i < this.selectedOptions.length; i++) {
         const element = this.selectedOptions[i]
         generateIconsGrid(icons, iconsContainer, element.value, false)
