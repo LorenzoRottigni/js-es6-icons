@@ -199,19 +199,33 @@ const PRINT_ALL = 'all'
 //container where print
 const iconsContainer = document.querySelector('main .container-fluid')
 
-function generateIconsGrid(iconsArray, outputContainer, filter){
-    outputContainer.textContent = ''
+function generateIconsGrid(iconsArray, outputContainer, filter, clearContent){
+    //clear old content condition TRUE/FALSE
+    if(clearContent)
+        outputContainer.textContent = ''
+    //for each index of input array
     iconsArray.forEach(element => {
+        //create new icon
         const newIcon = document.createElement('i')
+        //destructure current index element
         const {name, prefix, type, family} = element
+        //print only the type filtered information ('animal','vegetable','user','platform','item','all')
         if(type === filter || filter === PRINT_ALL){
-            const newIconDescription = document.createElement('h4');
+            //create new description tag
+            const newIconDescription = document.createElement('h4')
+            //create the new icon container
             const newIconContainer = document.createElement('div')
+            //add font awesome syntax classes to new icon
             newIcon.classList.add(`${family}`, `${prefix}${name}`, `fs-1`)
+            //append new icon to his container
             newIconContainer.appendChild(newIcon)
+            //write test in new icon description
             newIconDescription.textContent = name
+            //add description to new icon container
             newIconContainer.appendChild(newIconDescription)
+            //add classes to new icon container
             newIconContainer.classList.add('icon-container','rounded-3','shadow')
+            //add differents text-color border-color
             switch(type){
                 case 'animal':
                     newIconContainer.classList.add('text-danger','border-danger')
@@ -229,15 +243,20 @@ function generateIconsGrid(iconsArray, outputContainer, filter){
                     newIconContainer.classList.add('text-primary','border-primary')
                     break
             }
+            //append the newIconContainer to the iconsContainer
             outputContainer.appendChild(newIconContainer)
-            }
-    });
+        }
+    })
 }
 
-generateIconsGrid(icons, iconsContainer, PRINT_ALL)
-
+generateIconsGrid(icons, iconsContainer, PRINT_ALL, 1, true)
+//queryselectorall x multiple select
 const iconsFilter = document.querySelector('select')
 
 iconsFilter.addEventListener('change', function (){
-    generateIconsGrid(icons, iconsContainer, this.value)
+    iconsContainer.textContent = ''
+    for (let i = 0; i < this.selectedOptions.length; i++) {
+        const element = this.selectedOptions[i]
+        generateIconsGrid(icons, iconsContainer, element.value, false)
+    }
 })
